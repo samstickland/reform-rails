@@ -10,6 +10,7 @@ Bundler.require
 module Dummy
   class Application < Rails::Application
     config.eager_load = false
+    config.active_support.deprecation = :stderr
   end
 end
 
@@ -43,10 +44,10 @@ class Album < ActiveRecord::Base
   has_many :songs
 end
 
-ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => "#{Dir.pwd}/database.sqlite3"
-)
+ActiveRecord::Base.establish_connection :adapter => 'sqlite3',
+                                        :database => ':memory:'
+ActiveRecord::Schema.verbose = false
+load "#{File.dirname(__FILE__)}/support/schema.rb"
 
 Minitest::Spec.class_eval do
   def self.rails5_0?
