@@ -4,6 +4,13 @@
 
 * delegate `validates_each` method and allow it to be called outside a validation block.
 
+* add `case_sensitive` option to Reform Uniqueness validation. Defaults to true.
+
+* fix bug in uniqueness validation where form has different attribute name to column
+
+* improve handling of persisted records in uniqueness validator
+
+* remove params.merge! as it's deprecated in rails 5
 
 # 0.1.7 (0.1.6 Yanked)
 
